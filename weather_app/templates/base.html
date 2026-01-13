@@ -24,6 +24,27 @@
             margin: 0 auto;
             padding: 0 15px;
         }
+        .message{
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .success{
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error{
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        .info{
+            background-color: #efffef;
+            color: #0c5460;
+            border: 1px solid #efffef;
+        }
     </style>
     <title>Weather App</title>
 </head>
@@ -35,18 +56,21 @@
         </div>
     </nav>
     <div class="container">
+        
+        {% if messages %}
+            
+            {% for message in messages %}
+                <div class="message {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+                
+        {% endif %}
         {% block content %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+            
         {% endblock content %}
-
+            
     </div>
-
 </body>
 
 </html>

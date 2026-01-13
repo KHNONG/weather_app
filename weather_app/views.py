@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 import requests
 from django.http import JsonResponse
 from .models import City
+from django.contrib import messages 
 # Create your views here.
 def home(request):
 
@@ -24,9 +25,14 @@ def home(request):
             if not City.objects.filter(name=city_name).exists():
                 #save the new city to the database
                 City.objects.create(name=city_name)
+                messages.success(request, f'{city_name} have been add successfully!')
 
-            else: pass
-            
+            else:
+                messages.info(request, f'{city_name} already exist!')    
+
+        else:
+            messages.error(request, f'City {city_name} not found!')
+                     
         return redirect('home')
 
     weather_data=[]
