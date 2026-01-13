@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1.2rem;
+        }
+
+        nav a {
+            color: wheat;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+    </style>
+    <title>Weather App</title>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="{% url 'home' %}">Weather App</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endblock content %}
+
+    </div>
+
+</body>
+
+</html>

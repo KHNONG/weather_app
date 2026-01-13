@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div class="" style="text-align: center; max-width: 1200px; margin: 0 auto;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name" id=""
+                style="padding: 10px; width: 200px; margin-right: 10px;">
+            <button type="submit"
+                style="padding: 10px 20px; background:#007bff; color: white; border: none; cursor: pointer;">
+                Add City
+            </button>
+        </form>
+    </div>
+</div>
+<!-- Weather card container -->
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+    
+    {% for weather in weather_data %}
+
+    <div style="border: 1px solid #ddd; padding: 20px; border-radius: 5px; text-align: center; background: color(white);">
+        <img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="weather icon">
+        <h3 style="margin: 10px 0;">{{ weather.city }}</h3>
+        <div style="font-size: 24px; margin: 10px 0;"> {{weather.temperature}}</div>
+        <p style="color: #666;">{{weather.descrition}}</p>
+    </div>
+        
+    {% endfor %}
+</div>
+
+{% endblock content %}
